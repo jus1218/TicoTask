@@ -66,7 +66,10 @@ public class Main {
 
                     break;
                 case 3://Eliminar
-
+                    id = View.input("Ingrese el id a eliminar");
+                    String msj = colaboradorCtrll.delete(id);
+                    View.imprimir(msj);
+                        
                     break;
                 case 4:// Salir
                     View.imprimir("Cerrando sistema...");

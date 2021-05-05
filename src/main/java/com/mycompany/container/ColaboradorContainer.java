@@ -45,6 +45,10 @@ public class ColaboradorContainer {
 
     /*Delete*/
     public static boolean delete(String id) {
+        if (contenedor.containsKey(id)) {
+            contenedor.remove(id);
+            return true;
+        }
         return false;
     }
 

@@ -33,15 +33,15 @@ public class ColaboradorController implements ColaboradorInterface {
     private String especialidad;
     private Boolean estado;*/
 
-    /* Busca por medio de id, si encuentra, el contenedor.find devuelve el usuario
+ /* Busca por medio de id, si encuentra, el contenedor.find devuelve el usuario
     *  lo entrega a user y por medio de un arreglo se manda los datos */
     @Override
     public String[] buscar(String id) {
         if (ColaboradorContainer.exist(id)) {
             ColaboradorEntity user = ColaboradorContainer.find(id);//devuelve usuario
             String[] data = {user.getId(), user.getNombre(), user.getApellidos(),
-                 user.getTelefono(), user.getCorreo(), user.getEspecialidad(),
-                 String.valueOf(user.getEstado())};
+                user.getTelefono(), user.getCorreo(), user.getEspecialidad(),
+                String.valueOf(user.getEstado())};
             return data;
         }
         return null;
@@ -50,6 +50,11 @@ public class ColaboradorController implements ColaboradorInterface {
     @Override
     public String delete(String id) {
 
-        return null;
+        String msj = "Usuario no encontrado";
+        if (ColaboradorContainer.exist(id)) {
+            ColaboradorContainer.delete(id);
+            msj = "Se ha eliminado exitosamente";
+        }
+        return msj;
     }
 }
