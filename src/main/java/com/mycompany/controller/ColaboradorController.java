@@ -7,14 +7,14 @@ public class ColaboradorController implements ColaboradorInterface {
 
     @Override
     public String create(String[] data) {
-        String respuesta = "Usuario ya registrado previamente";
+        String respuesta = "... Usuario ya registrado previamente ...";
         if (!ColaboradorContainer.exist(data[0])) {
             ColaboradorEntity newColaborador = new ColaboradorEntity(data);
 
             if (ColaboradorContainer.add(newColaborador)) {
                 respuesta = "Usuario agregado exitosamente";
             } else {
-                respuesta = "Error al agregar al almacen de datos";
+                respuesta = "***Error al agregar al almacen de datos***";
             }
         }
         return respuesta;
@@ -22,7 +22,18 @@ public class ColaboradorController implements ColaboradorInterface {
 
     @Override
     public String update(String[] data) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        String msj = "*** Usuario no encontrado ***";
+        if (ColaboradorContainer.exist(data[0])) {
+            ColaboradorEntity c0 = new ColaboradorEntity(data);
+
+            if (ColaboradorContainer.update(c0)) {
+                msj = "Se actualizo correctamente";
+            } else {
+                msj = "*** Error al modificar al usuario ***";
+            }
+        }
+        return msj;
     }
 
     /* protected String id;
@@ -50,10 +61,13 @@ public class ColaboradorController implements ColaboradorInterface {
     @Override
     public String delete(String id) {
 
-        String msj = "Usuario no encontrado";
+        String msj = "*** Usuario no encontrado ***";
         if (ColaboradorContainer.exist(id)) {
-            ColaboradorContainer.delete(id);
-            msj = "Se ha eliminado exitosamente";
+            if (ColaboradorContainer.delete(id)) {
+                msj = "Se ha eliminado exitosamente";
+            } else {
+                msj = "*** Error al eliminar el usuario ***";
+            }
         }
         return msj;
     }

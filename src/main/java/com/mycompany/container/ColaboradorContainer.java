@@ -40,6 +40,12 @@ public class ColaboradorContainer {
     //--------- Desarrollar los metodos faltantes -----------------
     /*Update*/
     public static boolean update(ColaboradorEntity user) {
+        if (contenedor.containsKey(user.getId())) {
+
+            //contenedor.replace(user.getId(), contenedor.get(user.getId()), user);
+            contenedor.replace(user.getId(), user);
+            return true;
+        }
         return false;
     }
 

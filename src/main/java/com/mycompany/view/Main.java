@@ -4,7 +4,6 @@ import com.mycompany.controller.ColaboradorController;
 import com.mycompany.model.ColaboradorEntity;
 import com.mycompany.controller.ColaboradorInterface;
 import com.mycompany.model.Persona;
-import javax.swing.JOptionPane;
 
 /**
  * @author Alexandex Viales.
@@ -36,7 +35,7 @@ public class Main {
             opcUser = View.menu("Bienvenido al menu Principal", menuOptions);
             switch (opcUser) {
                 case 0:// Agregar
-                    
+
                     /* protected String id;
                        protected String nombre;
                        protected String apellidos;
@@ -63,13 +62,17 @@ public class Main {
                     }
                     break;
                 case 2:// Modificar
+                    String datos[] = {"Cedula", "Nombre", "Apellidos", "telefono", "correo", "especialidad", "estado"};
+                    data = View.input("Datos del Usuario", datos);
 
+                    respuesta = colaboradorCtrll.update(data);
+                    View.imprimir(respuesta);
                     break;
                 case 3://Eliminar
                     id = View.input("Ingrese el id a eliminar");
                     String msj = colaboradorCtrll.delete(id);
                     View.imprimir(msj);
-                        
+
                     break;
                 case 4:// Salir
                     View.imprimir("Cerrando sistema...");
