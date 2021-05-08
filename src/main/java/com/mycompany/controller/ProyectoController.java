@@ -9,7 +9,7 @@ public class ProyectoController implements ProyectoInterface {
     @Override
     public String create(String[] data) {
         String msj = "No se creo ningun proyecto";
-
+        
         // if (!ProyectoContainer.exist(data[0])) { no es necesario ya que los proyectos se crean con id unicos
         if (ProyectoContainer.add(new ProyectoEntity(data))) {//creo el proyecto
             msj = "Se creo el proyecto exitosamente";
@@ -24,9 +24,9 @@ public class ProyectoController implements ProyectoInterface {
     public String update(String[] data) {
         String msj = "*** Proyecto no existente ***";
         if (ProyectoContainer.exist(data[0])) {
-            /* Al crear un nuevo obj se crea una nueva id por lo que
-             * se llama al setId para darle el valor que tenia y asi
-             * no se pierde el id */
+            /* Al crear un nuevo obj se crea una nueva id nuevo por lo que
+             * se manda a otro constructor que tenga para ingresar id
+             * asi no se pierde el id */
             ProyectoEntity p0 = new ProyectoEntity(data[0], data[1], data[2], data[3]);
             //p0.setId(data[0]);
 

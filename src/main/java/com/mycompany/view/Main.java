@@ -1,13 +1,9 @@
 package com.mycompany.view;
 
 import com.mycompany.controller.ColaboradorController;
-import com.mycompany.model.ColaboradorEntity;
 import com.mycompany.controller.ColaboradorInterface;
 import com.mycompany.controller.ProyectoController;
 import com.mycompany.controller.ProyectoInterface;
-import com.mycompany.model.Persona;
-import com.mycompany.model.proyecto.MotherProject;
-import com.mycompany.model.proyecto.ProyectoEntity;
 
 /**
  * @author Alexandex Viales.

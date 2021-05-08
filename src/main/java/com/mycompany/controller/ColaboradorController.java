@@ -9,9 +9,8 @@ public class ColaboradorController implements ColaboradorInterface {
     public String create(String[] data) {
         String respuesta = "... Usuario ya registrado previamente ...";
         if (!ColaboradorContainer.exist(data[0])) {
-            ColaboradorEntity newColaborador = new ColaboradorEntity(data);
 
-            if (ColaboradorContainer.add(newColaborador)) {
+            if (ColaboradorContainer.add(new ColaboradorEntity(data))) {
                 respuesta = "Usuario agregado exitosamente";
             } else {
                 respuesta = "***Error al agregar al almacen de datos***";
@@ -52,7 +51,7 @@ public class ColaboradorController implements ColaboradorInterface {
             ColaboradorEntity user = ColaboradorContainer.find(id);//devuelve usuario
             String[] data = {user.getId(), user.getNombre(), user.getApellidos(),
                 user.getTelefono(), user.getCorreo(), user.getEspecialidad(),
-                String.valueOf(user.getEstado())};
+                user.getEstado()};
             return data;
         }
         return null;

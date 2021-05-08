@@ -3,10 +3,10 @@ package com.mycompany.model;
 public class ColaboradorEntity extends Persona {
 
     private String especialidad;
-    private Boolean estado;
+    private String estado;
 
     //------------------ Constructores --------------------------
-    public ColaboradorEntity(String especialidad, Boolean estado) {
+    public ColaboradorEntity(String especialidad, String estado) {
         this.especialidad = especialidad;
         this.estado = estado;
     }
@@ -14,16 +14,17 @@ public class ColaboradorEntity extends Persona {
     public ColaboradorEntity(String[] datos) {
         super(datos[0], datos[1], datos[2], datos[3], datos[4]);
         this.especialidad = datos[5];
-        this.estado = Boolean.parseBoolean(datos[6]);//resive string,entones toca pasarlo a boolean.
+        this.estado = datos[6];
     }
     //----------------- Metodos propios -------------------------
-    
+
     public String getEspecialidad() {
         return especialidad;
     }
 
-    public Boolean getEstado() {
-        return estado;
+    public String getEstado() {
+
+        return this.estado;
     }
 
     //------------------ Metodos Heredados ----------------------
