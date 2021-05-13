@@ -46,13 +46,13 @@ public class ColaboradorController implements ColaboradorInterface {
  /* Busca por medio de id, si encuentra, el contenedor.find devuelve el usuario
     *  lo entrega a user y por medio de un arreglo se manda los datos */
     @Override
-    public String[] buscar(String id) {
+    public String buscar(String id) {
         if (ColaboradorContainer.exist(id)) {
-            ColaboradorEntity user = ColaboradorContainer.find(id);//devuelve usuario
-            String[] data = {user.getId(), user.getNombre(), user.getApellidos(),
-                user.getTelefono(), user.getCorreo(), user.getEspecialidad(),
-                user.getEstado()};
-            return data;
+//            ColaboradorEntity user = ColaboradorContainer.find(id);//devuelve usuario
+//            String[] data = {user.getId(), user.getNombre(), user.getApellidos(),
+//                user.getTelefono(), user.getCorreo(), user.getEspecialidad(),
+//                user.getEstado()};
+            return ColaboradorContainer.find(id).toString();
         }
         return null;
     }

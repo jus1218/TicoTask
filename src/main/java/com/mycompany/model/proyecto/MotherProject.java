@@ -1,11 +1,15 @@
 package com.mycompany.model.proyecto;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class MotherProject {
 
     protected String id;
     protected String nombre;
-    protected String fechaInicio;
-    protected String fechaFinal;
+    protected Date fechaInicio;
+    protected Date fechaFinal;
     protected static int contadorId; //asignar el valor numerico al id
 
     public MotherProject() {
@@ -24,20 +28,22 @@ public class MotherProject {
         return nombre;
     }
 
-    public String getFechaInicio() {
+    public Date getFechaInicio() {
         return fechaInicio;
     }
 
-    public String getFechaFinal() {
+    public Date getFechaFinal() {
         return fechaFinal;
     }
 
-    public void setFechaInicio(String fechaInicio) {
-        this.fechaInicio = fechaInicio;
+    public void setFechaInicio(String fechaInicio) throws ParseException {
+        SimpleDateFormat formatoDelTexto = new SimpleDateFormat("dd/MM/yyyy");
+        this.fechaInicio =  formatoDelTexto.parse(fechaInicio);
     }
 
-    public void setFechaFinal(String fechaFinal) {
-        this.fechaFinal = fechaFinal;
+    public void setFechaFinal(String fechaFinal) throws ParseException {
+        SimpleDateFormat formatoDelTexto = new SimpleDateFormat("dd/MM/yyyy");
+        this.fechaFinal =  formatoDelTexto.parse(fechaFinal);
     }
 
     public void setId(String id) {
@@ -46,13 +52,14 @@ public class MotherProject {
 
     @Override
     public String toString() {
+        SimpleDateFormat formatoDelTexto = new SimpleDateFormat("dd/MM/yyyy");
         StringBuilder sb = new StringBuilder();
         sb.append("Id = ").append(id);
-        sb.append("\t\t\t|| FechaInicio = ").append(fechaInicio);
+        sb.append("\t\t\t|| FechaInicio = ").append( formatoDelTexto.format(fechaInicio));
         sb.append("\nNombre = ").append(nombre);
-        sb.append("\t|| FechaFinal = ").append(fechaFinal);
+        sb.append("\t|| FechaFinal = ").append(formatoDelTexto.format(fechaFinal));
         sb.append("\n-----------------------------------------------");
         return sb.toString();
     }
-
+    
 }

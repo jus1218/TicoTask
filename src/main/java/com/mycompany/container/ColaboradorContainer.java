@@ -37,7 +37,6 @@ public class ColaboradorContainer {
         return null;
     }
 
-    //--------- Desarrollar los metodos faltantes -----------------
     /*Update*/
     public static boolean update(ColaboradorEntity user) {
         if (contenedor.containsKey(user.getId())) {
@@ -56,11 +55,6 @@ public class ColaboradorContainer {
             return true;
         }
         return false;
-    }
-
-    /*Login*/
-    public static boolean login(String idUser, String password) {
-        return true;
     }
 
 }

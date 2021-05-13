@@ -4,6 +4,7 @@ public class ColaboradorEntity extends Persona {
 
     private String especialidad;
     private String estado;
+    //private TaskEntity task;
 
     //------------------ Constructores --------------------------
     public ColaboradorEntity(String especialidad, String estado) {
@@ -81,10 +82,10 @@ public class ColaboradorEntity extends Persona {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(super.toString()).append(" => ");
-        sb.append("ColaboradorEntity{especialidad = ").append(especialidad);
-        sb.append(", estado = ").append(estado);
-        sb.append('}');
+        sb.append(super.toString());
+        sb.append("  ||especialidad = ").append(especialidad);
+        sb.append("\nestado = ").append(estado);
+        sb.append("\n====================================");
         return sb.toString();
     }
 }

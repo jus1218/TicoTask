@@ -7,7 +7,7 @@ public interface ColaboradorInterface {
 
     public String update(String[] data);
 
-    public String[] buscar(String id);
+    public String buscar(String id);
 
     public String delete(String id);
 
