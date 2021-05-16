@@ -5,6 +5,12 @@ import com.mycompany.controller.ColaboradorInterface;
 import com.mycompany.controller.ProyectoController;
 import com.mycompany.controller.ProyectoInterface;
 
+import com.mycompany.controller.TareaController;
+import com.mycompany.controller.TareaInterface;
+
+
+
+
 /**
  * @author Alexandex Viales.
  * @author Daniel Lopez.
@@ -20,8 +26,10 @@ public class Main {
 //        imprimir(c0);
 //        c0.setId("2");
 //        imprimir(c0);
-        moduloProyecto();
-        moduloColaborador();
+        //moduloProyecto();
+        //moduloColaborador();
+        
+        moduloTarea();
     }
 
     private static void moduloColaborador() {
@@ -131,5 +139,82 @@ public class Main {
         } while (opcUser != 3);
 
     }
+
+    private static void moduloTarea(){
+        TareaInterface tareaController = new TareaController();
+            int opcU;
+            String id;                 //0         1        2             3                 4              5   
+            String menuOptions[] = {"Agregar" ,"Buscar", "Eliminar", "Mostrar", " Agregar Colaborador" ,"Deplegar tareas","Salir"};
+            String respuesta;
+
+        do{
+            opcU = View.menu("Menu Tareas", menuOptions);
+            switch(opcU){
+                case 0: //Agregar
+                    String data[] = {"Descripcion","Recursos","\tFormato fecha [ dia / mes / año ]\nFecha de inicio", "Fecha Final"};
+                    data = View.input("Datos de Tarea", data);
+                    respuesta = tareaController.create(data);
+                    View.imprimir(respuesta);
+                    break;
+
+                case 1://Buscar
+
+                    id = View.input("Ingrese el id de la tarea a mostrar" );
+
+                    String tarea[] = tareaController.buscar(id);
+                    if(tarea != null){
+                        View.imprimir("Datos de la tarea");
+                        for(String line : tarea ){
+                            View.imprimir(line);
+                        }
+                        tareaController.buscar(id);
+                    }else if(tarea == null){
+                        View.imprimir("No existe ninguna tarea");                      
+                        }
+                    break;
+                case 2://Modificar
+                   String dataTarea[] = {"Id","Descripcion","Recursos"};
+                    dataTarea = View.input("Datos de Tarea", dataTarea);
+
+                    respuesta = tareaController.update(dataTarea);
+                        
+                    View.imprimir(respuesta);
+
+                    break;
+                case 3://Eliminar
+                    String tareaId = View.input("Ingrese el Id de la tarea a eliminar: ");
+
+                    respuesta = tareaController.delete(tareaId);
+                    View.imprimir(respuesta);
+                    break;
+                case 4://Add colaborador 
+                    String idTarea = View.input("Ingrese el Id de la tarea");
+                    String idColaborador = View.input("Ingrese el Id del Colaborador");
+                    respuesta = tareaController.addColaborador(idTarea, idColaborador);
+                    View.imprimir(respuesta);
+
+
+                    break;
+                case 5://Desplejar
+                    
+                     String tareaList[] = tareaController.getAll();
+                    
+                    if (tareaList != null) {
+                        View.imprimir("========== Lista de Proyectos ===========");
+                        for (String line : tareaList) {
+                            View.imprimir(line);
+                        }
+                        View.imprimir("=========================================");
+                    } else {
+                        View.imprimir("No existen Proyectos");
+                    }
+                    break;
+                case 6://Salir
+                    
+                    break;                 
+                
+            }
+        }while(opcU != 6);       
+    }     
 
 }
