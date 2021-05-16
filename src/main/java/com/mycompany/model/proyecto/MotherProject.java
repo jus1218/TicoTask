@@ -10,10 +10,10 @@ public class MotherProject {
     protected String nombre;
     protected Date fechaInicio;
     protected Date fechaFinal;
-    protected static int contadorId; //asignar el valor numerico al id
+    
 
     public MotherProject() {
-        this.id = "P" + (++MotherProject.contadorId);
+        
     }
 
     public void setNombre(String nombre) {

@@ -3,12 +3,14 @@ package com.mycompany.model.proyecto;
 import java.text.ParseException;
 
 public class ProyectoEntity extends MotherProject {
+
+    protected static int contadorId; //asignar el valor numerico al id
     //private SprintEntity sprint;
 
     public ProyectoEntity(String data[]) throws ParseException {//constructor para crear poyectos
-        super();
         //data[0] => viene el id pero eso ya esta
-        this.setNombre(data[0]);
+        this.id = "P" + (++ProyectoEntity.contadorId);
+        this.nombre = data[0];
         this.setFechaInicio(data[1]);
         this.setFechaFinal(data[2]);
         //this.Sprint = null;

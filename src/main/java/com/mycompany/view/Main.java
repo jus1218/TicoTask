@@ -11,7 +11,7 @@ import com.mycompany.controller.ProyectoInterface;
  * @author Justin Salazar.
  */
 public class Main {
-    
+
     public static void main(String[] args) {
 
 //        String []datos={"1","Justin","Salazar","62890177","justin.abc12@gmail.com"};
@@ -23,15 +23,15 @@ public class Main {
         moduloProyecto();
         moduloColaborador();
     }
-    
+
     private static void moduloColaborador() {
         ColaboradorInterface colaboradorCtrll = new ColaboradorController();
-        
+
         int opcUser;
         String id;
         String respuesta;
         String menuOptions[] = {"Agregar", "Cosultar", "Modificar", "Eliminar", "Salir"};
-        
+
         do {
             opcUser = View.menu("Menu Administrador de Colaboradores", menuOptions);
             switch (opcUser) {
@@ -45,7 +45,7 @@ public class Main {
                     id = View.input("Ingrese la cedula a consultar");
                     // String userData[] = colaboradorCtrll.buscar(id);//si encuentra devuelve un arreglo
                     if (colaboradorCtrll.buscar(id) != null) {
-                        
+
                         View.imprimir("Datos del usuario almacenado");
                         View.imprimir(colaboradorCtrll.buscar(id));
 //                        for (String line : userData) {
@@ -58,7 +58,7 @@ public class Main {
                 case 2:// Modificar
                     String datos[] = {"Cedula", "Nombre", "Apellidos", "telefono", "correo", "especialidad", "estado"};
                     data = View.input("Datos del Usuario", datos);
-                    
+
                     respuesta = colaboradorCtrll.update(data);
                     View.imprimir(respuesta);
                     break;
@@ -66,7 +66,7 @@ public class Main {
                     id = View.input("Ingrese el id a eliminar");
                     String msj = colaboradorCtrll.delete(id);
                     View.imprimir(msj);
-                    
+
                     break;
                 case 4:// Salir
                     View.imprimir("Cerrando sistema...");
@@ -74,22 +74,22 @@ public class Main {
                 default:
                     View.imprimir("**** Opcion invalida *****");
                     break;
-                
+
             }
-            
+
         } while (opcUser != 4);
-        
+
     }
-    
+
     public static void moduloProyecto() {
-        
+
         ProyectoInterface ProyectoCtrll = new ProyectoController();
-        
+
         int opcUser;
         String id;
         String respuesta;
         String menuOptions[] = {"Agregar", "Modificar", "Listar Proyectos", "Salir"};
-        
+
         do {
             opcUser = View.menu("Menu Administrador de Proyectos", menuOptions);
             switch (opcUser) {
@@ -100,15 +100,15 @@ public class Main {
                     View.imprimir(respuesta);
                     break;
                 case 1:// Modificar 
-                    String datos[] = {"ID", "Nombre", "\tFormato de fecha[ dia / mes / año ]\nFecha de inicio", "Fecha Final"};
+                    String datos[] = {"ID", "Nuevo nombre", "\tFormato de fecha[ dia / mes / año ]\nnueva fecha de inicio", "nueva fecha Final"};
                     data = View.input("Datos del proyecto", datos);
-                    
+
                     respuesta = ProyectoCtrll.update(data);
                     View.imprimir(respuesta);
                     break;
                 case 2:// Listar Proyectos
                     String projectList[] = ProyectoCtrll.getAllProject();
-                    
+
                     if (projectList != null) {
                         View.imprimir("========== Lista de Proyectos ===========");
                         for (String line : projectList) {
@@ -125,11 +125,11 @@ public class Main {
                 default:
                     View.imprimir("**** Opcion invalida *****");
                     break;
-                
+
             }
-            
+
         } while (opcUser != 3);
-        
+
     }
-    
+
 }
