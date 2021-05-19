@@ -1,4 +1,6 @@
-package com.mycompany.model;
+package com.mycompany.model.colaborador_model;
+
+import com.mycompany.model.Persona;
 
 public class ColaboradorEntity extends Persona {
 
@@ -7,10 +9,10 @@ public class ColaboradorEntity extends Persona {
     //private TaskEntity task;
 
     //------------------ Constructores --------------------------
-    public ColaboradorEntity(String especialidad, String estado) {
-        this.especialidad = especialidad;
-        this.estado = estado;
-    }
+//    public ColaboradorEntity(String especialidad, String estado) {
+//        this.especialidad = especialidad;
+//        this.estado = estado;
+//    }
 
     public ColaboradorEntity(String[] datos) {
         super(datos[0], datos[1], datos[2], datos[3], datos[4]);
@@ -26,6 +28,14 @@ public class ColaboradorEntity extends Persona {
     public String getEstado() {
 
         return this.estado;
+    }
+
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     //------------------ Metodos Heredados ----------------------

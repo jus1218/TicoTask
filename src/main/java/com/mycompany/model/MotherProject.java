@@ -1,4 +1,4 @@
-package com.mycompany.model.proyecto;
+package com.mycompany.model;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

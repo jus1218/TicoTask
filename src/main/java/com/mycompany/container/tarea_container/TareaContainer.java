@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.container;
-import com.mycompany.model.ColaboradorEntity;
-import com.mycompany.model.TareaEntity;
+package com.mycompany.container.tarea_container;
+import com.mycompany.model.colaborador_model.ColaboradorEntity;
+import com.mycompany.model.tarea_model.TareaEntity;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

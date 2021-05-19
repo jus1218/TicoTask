@@ -1,6 +1,6 @@
-package com.mycompany.container;
+package com.mycompany.container.colaborador_container;
 
-import com.mycompany.model.ColaboradorEntity;
+import com.mycompany.model.colaborador_model.ColaboradorEntity;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.mycompany.controller;
+package com.mycompany.controller.colaborador_controller;
 
 public interface ColaboradorInterface {
     //CRUD C-CREATE R-READ U-UPDATE D-DELETE

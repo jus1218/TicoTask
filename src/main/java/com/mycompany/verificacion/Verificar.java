@@ -18,25 +18,14 @@ public class Verificar {
     }
 
     //verificarRango
-    public static boolean verificarRangoFechaSprint(String[] data) throws ParseException {
+    public static boolean verificarRangoFecha(String[] data, Date inicioProj, Date finalProj) throws ParseException {
 
-        if (verificarCongruenciaFechas(data[0], data[1])) {
-            //se llama el contenedor para verificar con id
-            //despues si exis
-            //ProyectoContainer.
+        if (verificarCongruenciaFechas(data[1], data[2])) {
+            Date fechaIni = new SimpleDateFormat("dd/MM/yyyy").parse(data[1]);
+            Date fechaFina = new SimpleDateFormat("dd/MM/yyyy").parse(data[2]);
+            
+            if (fechaIni.after(inicioProj) && fechaFina.before(finalProj)) return true; 
         }
-
-        return false;
-    }
-
-    public static boolean verificarRangoFechaTask(String[] data) throws ParseException {
-
-        if (verificarCongruenciaFechas(data[0], data[1])) {
-            //se llama el contenedor para verificar con id
-            //despues si exis
-            //ProyectoContainer.
-        }
-
         return false;
     }
 }

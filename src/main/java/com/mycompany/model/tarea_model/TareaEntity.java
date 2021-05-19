@@ -3,43 +3,38 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.model;
+package com.mycompany.model.tarea_model;
 
-import com.mycompany.model.ColaboradorEntity;
-import com.mycompany.model.proyecto.MotherProject;
+import com.mycompany.model.colaborador_model.ColaboradorEntity;
+import com.mycompany.model.MotherProject;
 import java.text.ParseException;
 import java.util.Date;
 
+public class TareaEntity extends MotherProject {
 
-public class TareaEntity extends MotherProject  {
-
-    private String id;
     private String descripcion;
     private ColaboradorEntity colaborador;//agregar colaborador por medio de funcion
     private String recurso;
+    private static int contadorTarea;
 
     //private Sprint sprintProyecto;
-      
     //-----------------Constructores--------------------
-    public TareaEntity(String pId, String pDescripcion, String pRecurso,/* aqui va el sprint  */ String fechaInicio, String fechaFinal)throws ParseException {
+    public TareaEntity(String pId, String pDescripcion, String pRecurso,/* aqui va el sprint  */ String fechaInicio, String fechaFinal) throws ParseException {
         this.id = pId;
-        this.descripcion = pDescripcion;      
+        this.descripcion = pDescripcion;
         this.recurso = pRecurso;
         this.setFechaInicio(fechaInicio);
         this.setFechaFinal(fechaFinal);
 
-       
     }
 
-     public TareaEntity(String[] datos)throws ParseException{ 
-         super();
-                  
-        //this.id = datos[0];
+    public TareaEntity(String[] datos) throws ParseException {
+        this.id = "T-" + ++TareaEntity.contadorTarea;
         this.descripcion = datos[0];
-        this.recurso = datos[1];  
+        this.recurso = datos[1];
         this.setFechaInicio(datos[2]);
         this.setFechaFinal(datos[3]);
-        
+
     }
 //-------------------Getters-----------------------
 
@@ -89,14 +84,14 @@ public class TareaEntity extends MotherProject  {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        
+
         sb.append(", Descripcion = ").append(descripcion);
         //Toca llamar al toString de colaborador 
         sb.append(", Colaborador = ").append(colaborador);
-        
+
         sb.append(", Recurso = ").append(recurso);
         sb.append(super.toString());
-        
+
         sb.append('}');
         return sb.toString();
     }

@@ -1,4 +1,4 @@
-package com.mycompany.controller;
+package com.mycompany.controller.proyecto_controller;
 
 public interface ProyectoInterface {
 

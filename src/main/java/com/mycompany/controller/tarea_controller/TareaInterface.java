@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.controller;
+package com.mycompany.controller.tarea_controller;
 
 public interface TareaInterface {
     public String create(String[] data);

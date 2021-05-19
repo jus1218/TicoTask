@@ -1,11 +1,10 @@
 
-package com.mycompany.controller;
+package com.mycompany.controller.tarea_controller;
 
-import com.mycompany.container.ColaboradorContainer;
-import com.mycompany.container.TareaContainer;
-import com.mycompany.model.TareaEntity;
+import com.mycompany.container.colaborador_container.ColaboradorContainer;
+import com.mycompany.container.tarea_container.TareaContainer;
+import com.mycompany.model.tarea_model.TareaEntity;
 import com.mycompany.verificacion.Verificar;
-import com.mycompany.view.View;
 import java.text.ParseException;
 import java.util.List;
 

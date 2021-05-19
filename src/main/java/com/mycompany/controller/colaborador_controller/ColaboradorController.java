@@ -1,15 +1,15 @@
-package com.mycompany.controller;
+package com.mycompany.controller.colaborador_controller;
 
-import com.mycompany.container.ColaboradorContainer;
-import com.mycompany.model.ColaboradorEntity;
+import com.mycompany.container.colaborador_container.ColaboradorContainer;
+import com.mycompany.model.colaborador_model.ColaboradorEntity;
 
 public class ColaboradorController implements ColaboradorInterface {
-
+    
     @Override
     public String create(String[] data) {
         String respuesta = "... Usuario ya registrado previamente ...";
         if (!ColaboradorContainer.exist(data[0])) {
-
+            
             if (ColaboradorContainer.add(new ColaboradorEntity(data))) {
                 respuesta = "Usuario agregado exitosamente";
             } else {
@@ -18,14 +18,20 @@ public class ColaboradorController implements ColaboradorInterface {
         }
         return respuesta;
     }
-
+    
     @Override
     public String update(String[] data) {
-
+        
         String msj = "*** Usuario no encontrado ***";
-        if (ColaboradorContainer.exist(data[0])) {
-            ColaboradorEntity c0 = new ColaboradorEntity(data);
-
+        if (ColaboradorContainer.exist(data[0])) { 
+            ColaboradorEntity c0 = ColaboradorContainer.find(data[0]);
+            c0.setNombre(data[1]);
+            c0.setApellido(data[2]);
+            c0.setTelefono(data[3]);
+            c0.setCorreo(data[4]);
+            c0.setEspecialidad(data[5]);
+            c0.setEstado(data[6]);
+            
             if (ColaboradorContainer.update(c0)) {
                 msj = "Se actualizo correctamente";
             } else {
@@ -56,10 +62,10 @@ public class ColaboradorController implements ColaboradorInterface {
         }
         return null;
     }
-
+    
     @Override
     public String delete(String id) {
-
+        
         String msj = "*** Usuario no encontrado ***";
         if (ColaboradorContainer.exist(id)) {
             if (ColaboradorContainer.delete(id)) {

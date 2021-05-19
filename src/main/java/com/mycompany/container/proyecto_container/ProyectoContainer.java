@@ -1,6 +1,6 @@
-package com.mycompany.container;
+package com.mycompany.container.proyecto_container;
 
-import com.mycompany.model.proyecto.ProyectoEntity;
+import com.mycompany.model.proyecto_model.ProyectoEntity;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,9 +24,9 @@ public class ProyectoContainer {
     }
 
     public static List getAll() {// verificar metodo
-       // List<ProyectoEntity> list = new ArrayList<ProyectoEntity>(contenedor.values());
+        // List<ProyectoEntity> list = new ArrayList<ProyectoEntity>(contenedor.values());
 
-        return  new ArrayList<ProyectoEntity>(contenedor.values());//aqui es el problem
+        return new ArrayList<ProyectoEntity>(contenedor.values());//aqui es el problem
     }
 
     public static boolean update(ProyectoEntity user) {
@@ -50,4 +50,21 @@ public class ProyectoContainer {
     public static ProyectoEntity getProyecto(String id) {
         return contenedor.get(id);
     }
+
+    public static List mostrarSprint(String id) {
+
+        if (contenedor.containsKey(id)) {
+            return contenedor.get(id).getSprints();
+        }
+        return null;
+    }
+
+    public static ProyectoEntity find(String id) {
+        if (contenedor.containsKey(id)) {
+            return contenedor.get(id);
+        }
+        return null;
+
+    }
+
 }

@@ -1,7 +1,7 @@
-package com.mycompany.controller;
+package com.mycompany.controller.proyecto_controller;
 
-import com.mycompany.container.ProyectoContainer;
-import com.mycompany.model.proyecto.ProyectoEntity;
+import com.mycompany.container.proyecto_container.ProyectoContainer;
+import com.mycompany.model.proyecto_model.ProyectoEntity;
 import com.mycompany.verificacion.Verificar;
 import java.text.ParseException;
 import java.util.List;
@@ -44,13 +44,19 @@ public class ProyectoController implements ProyectoInterface {
                     /* Al crear un nuevo obj se crea una nueva id nuevo por lo que
                     * se manda a otro constructor que tenga para ingresar id
                      * asi no se pierde el id */
-                    if (ProyectoContainer.update(new ProyectoEntity(data[0], data[1], data[2], data[3]))) 
+                    ProyectoEntity p0 = ProyectoContainer.find(data[0]);
+                    p0.setNombre(data[1]);
+                    p0.setFechaInicio(data[2]);
+                    p0.setFechaFinal(data[3]);
+
+                    if (ProyectoContainer.update(p0)) {
                         msj = "<<< Se actualizo correctamente el proyecto >>>";
-                     else 
-                        msj = "*** Error al modificar el proyecto ***";        
+                    } else {
+                        msj = "*** Error al modificar el proyecto ***";
+                    }
                 }
             } catch (ParseException ex) {
-                msj ="- Formato incorrecto\n*** Error al modificar el proyecto ***";
+                msj = "- Formato incorrecto\n*** Error al modificar el proyecto ***";
             }
         }
         return msj;
@@ -60,6 +66,7 @@ public class ProyectoController implements ProyectoInterface {
     public String[] getAllProject() {
 
         if (!ProyectoContainer.esVacio()) {//retorna true si esta vacio
+            //proyecto ProyectoController.size();
             List project = ProyectoContainer.getAll();
             String[] data = new String[project.size()];//ProyectoContainer.tamano()
 
@@ -76,4 +83,3 @@ public class ProyectoController implements ProyectoInterface {
     }
 
 }
-
