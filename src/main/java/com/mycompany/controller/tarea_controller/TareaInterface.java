@@ -12,11 +12,11 @@ public interface TareaInterface {
 
     public String update(String[] data);
 
-    public String[] buscar(String id);
+    public String buscar(String id);
 
     public String delete(String id);
     
     public String addColaborador(String idTarea, String idColaborador);
     
-    public List tareaDelSprint(String[] dataId);
+    public String[] tareaDelSprint(String dataId);
 }

@@ -3,10 +3,7 @@ package com.mycompany.controller.sprint_controller;
 import com.mycompany.model.sprint_model.SprintEntity;
 import com.mycompany.container.Sprint_container.SprintContainer;
 import com.mycompany.container.proyecto_container.ProyectoContainer;
-import com.mycompany.container.tarea_container.TareaContainer;
-import com.mycompany.controller.SprintInterface;
 import com.mycompany.model.proyecto_model.ProyectoEntity;
-import com.mycompany.model.tarea_model.TareaEntity;
 import com.mycompany.verificacion.Verificar;
 import java.text.ParseException;
 import java.util.List;
@@ -21,8 +18,8 @@ public class SprintController implements SprintInterface {
         if (ProyectoContainer.exist(data[0])) {
             try {
                 ProyectoEntity p0 = ProyectoContainer.find(data[0]);//esto es para poder hacer las comparaciones de fechas                
-                
-                if (Verificar.verificarRangoFecha(data, p0.getFechaInicio(), p0.getFechaFinal())) {
+
+                if (Verificar.verificarRangoFecha(data[1],data[2], p0.getFechaInicio(), p0.getFechaFinal())) {
                     SprintEntity s0 = new SprintEntity(data);
                     if (SprintContainer.add(s0)) {
                         if (ProyectoContainer.getProyecto(data[0]).getSprints().add(s0)) {
@@ -30,7 +27,7 @@ public class SprintController implements SprintInterface {
                         }
                     }
                 } else {
-                    respuesta = "*** Incongruencia en las fechas ***";
+                    respuesta = "*** Incongruencia en las fechas ***\n*** Intente de nuevo ***";
                 }
 
             } catch (ParseException ex) {
@@ -49,9 +46,9 @@ public class SprintController implements SprintInterface {
              * asi no se pierde el id */
             try {
                 String[] idProject = data[0].split("-");//con esto podemos extraer el id de proyecto
-                
+
                 ProyectoEntity p0 = ProyectoContainer.find(idProject[0]);//esto es para poder hacer las comparaciones de fechas
-                if (Verificar.verificarRangoFecha(data, p0.getFechaInicio(), p0.getFechaFinal())) {//aqui se compara
+                if (Verificar.verificarRangoFecha(data[1],data[2], p0.getFechaInicio(), p0.getFechaFinal())) {//aqui se compara
 
                     SprintEntity s0 = SprintContainer.find(data[0]);
                     s0.setFechaInicio(data[1]);
@@ -74,35 +71,39 @@ public class SprintController implements SprintInterface {
     @Override
     public String[] desplegar_Sprint(String id
     ) {
+        String[] d = {"No Existe este proyecto"};//
+
         if (ProyectoContainer.exist(id)) {
-            List Proyect = ProyectoContainer.mostrarSprint(id);
-            String data[] = new String[Proyect.size()];
-            int j = 0;
 
-            for (Object c : ProyectoContainer.mostrarSprint(id)) {
-                SprintEntity s0 = (SprintEntity) c;
-                data[j] = s0.toString();
-                j++;
+            if (!ProyectoContainer.find(id).getSprints().isEmpty()) {
+
+                List Proyect = ProyectoContainer.mostrarSprint(id);
+                String data[] = new String[Proyect.size()+1];
+                int j = 1;
+                data[0]="========== Lista de Sprints ===========";
+                for (Object c : ProyectoContainer.mostrarSprint(id)) {
+                    SprintEntity s0 = (SprintEntity) c;
+                    data[j] = s0.toString();
+                    j++;
+                }
+
+                return data;
+
             }
-            return data;
-
+            return null;
         }
-        return null;
+        return d;
     }
 
     @Override
     public String getTareas(String idSprint) {
-        if(SprintContainer.exist(idSprint)){
-            
-            SprintEntity s0 =  SprintContainer.find(idSprint);
-            
-            
+        if (SprintContainer.exist(idSprint)) {
+
+            SprintEntity s0 = SprintContainer.find(idSprint);
+
             //ArrayList
-        
         }
-        
-        
-        
+
         return null;
     }
 

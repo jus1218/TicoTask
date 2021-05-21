@@ -7,8 +7,8 @@ package com.mycompany.model.tarea_model;
 
 import com.mycompany.model.colaborador_model.ColaboradorEntity;
 import com.mycompany.model.MotherProject;
+import com.mycompany.model.sprint_model.SprintEntity;
 import java.text.ParseException;
-import java.util.Date;
 
 public class TareaEntity extends MotherProject {
 
@@ -17,7 +17,7 @@ public class TareaEntity extends MotherProject {
     private String recurso;
     private static int contadorTarea;
 
-    //private Sprint sprintProyecto;
+    private SprintEntity sprintProyecto;
     //-----------------Constructores--------------------
     public TareaEntity(String pId, String pDescripcion, String pRecurso,/* aqui va el sprint  */ String fechaInicio, String fechaFinal) throws ParseException {
         this.id = pId;
@@ -29,11 +29,11 @@ public class TareaEntity extends MotherProject {
     }
 
     public TareaEntity(String[] datos) throws ParseException {
-        this.id = "-" + ++TareaEntity.contadorTarea;
-        this.descripcion = datos[0];
-        this.recurso = datos[1];
-        this.setFechaInicio(datos[2]);
-        this.setFechaFinal(datos[3]);
+        this.id = "T-" + (++TareaEntity.contadorTarea);
+        this.descripcion = datos[1];
+        this.recurso = datos[2];
+        this.setFechaInicio(datos[3]);
+        this.setFechaFinal(datos[4]);
 
     }
 //-------------------Getters-----------------------
@@ -45,12 +45,20 @@ public class TareaEntity extends MotherProject {
         return descripcion;
     }
 
+    public SprintEntity getSprintProyecto() {
+        return sprintProyecto;
+    }
+
 //-------------------Setters-----------------------
     /**
      * @param descripción the descripción to set
      */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public void setSprintProyecto(SprintEntity sprintProyecto) {
+        this.sprintProyecto = sprintProyecto;
     }
 
     /**
@@ -85,15 +93,13 @@ public class TareaEntity extends MotherProject {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(super.toString());
-
-        sb.append(", Descripcion = ").append(descripcion);
+        sb.append("\nDescripcion = ").append(descripcion);
+        sb.append("\nRecurso = ").append(recurso);
         //Toca llamar al toString de colaborador 
-        sb.append(", Colaborador = ").append(colaborador);
-
-        sb.append(", Recurso = ").append(recurso);
-        sb.append('}');
+        sb.append("\nColaborador = ").append(colaborador != null ? colaborador : "No esta asignado");
+        sb.append("\n=========================================");
         return sb.toString();
-        
+
     }
 
 }

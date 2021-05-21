@@ -1,6 +1,6 @@
 package com.mycompany.view;
 
-import com.mycompany.controller.SprintInterface;
+import com.mycompany.controller.sprint_controller.SprintInterface;
 import com.mycompany.controller.colaborador_controller.ColaboradorController;
 import com.mycompany.controller.colaborador_controller.ColaboradorInterface;
 import com.mycompany.controller.proyecto_controller.ProyectoController;
@@ -9,7 +9,6 @@ import com.mycompany.controller.sprint_controller.SprintController;
 
 import com.mycompany.controller.tarea_controller.TareaController;
 import com.mycompany.controller.tarea_controller.TareaInterface;
-import com.mycompany.view.View;
 import java.util.List;
 
 /**
@@ -87,7 +86,7 @@ public class Main {
                     }
                     break;
                 case 2:// Modificar
-                    String datos[] = {"Cedula", "Nuevo nombre", "Nuesvos apellidos", "Nuevo telefono", "Nuevo correo", "Nueva especialidad", "estado( Activo / Inactivo )"};
+                    String datos[] = {"Cedula del colabrador a modificar", "Nuevo nombre", "Nuevos apellidos", "Nuevo telefono", "Nuevo correo", "Nueva especialidad", "estado( Activo / Inactivo )"};
                     data = View.input("Datos del Usuario", datos);
 
                     respuesta = colaboradorCtrll.update(data);
@@ -150,7 +149,7 @@ public class Main {
                     }
                     break;
                 case 3:// Salir
-                    View.imprimir("Cerrando sistema...");
+                    
                     break;
                 default:
                     View.imprimir("**** Opcion invalida *****");
@@ -166,14 +165,14 @@ public class Main {
         TareaInterface tareaController = new TareaController();
         int opcU;
         String id;                 //0         1        2             3                 4              5   
-        String menuOptions[] = {"Agregar", "Buscar", "Eliminar", "Mostrar", " Agregar Colaborador", "Deplegar tareas", "Salir"};
+        String menuOptions[] = {"Agregar", "Buscar", "Modificar", "Eliminar", " Agregar Colaborador", "Desplegar tareas", "Salir"};
         String respuesta;
-
+                                //Agregar, Buscar, Modificar, Eliminar, Add colaborador, Desplejar tareas de un sprint, salir
         do {
             opcU = View.menu("Menu Tareas", menuOptions);
             switch (opcU) {
                 case 0: //Agregar
-                    String data[] = {"Id Sprint a guardar","Descripcion", "Recursos", "\tFormato fecha [ dia / mes / año ]\nFecha de inicio", "Fecha Final"};
+                    String data[] = {"\tFormato id[ P1-numero ]\nId Sprint a guardar", "Descripcion", "Recursos", "\tFormato fecha [ dia / mes / año ]\nFecha de inicio", "Fecha Final"};
                     data = View.input("Datos de Tarea", data);
                     respuesta = tareaController.create(data);
                     View.imprimir(respuesta);
@@ -181,21 +180,21 @@ public class Main {
 
                 case 1://Buscar
 
-                    id = View.input("Ingrese el id de la tarea a mostrar");
+                    id = View.input("\tFormato de id[ T-numero ]\nIngrese el id de la tarea a mostrar");
 
-                    String tarea[] = tareaController.buscar(id);
+                    String tarea = tareaController.buscar(id);
                     if (tarea != null) {
-                        View.imprimir("Datos de la tarea");
-                        for (String line : tarea) {
-                            View.imprimir(line);
-                        }
+                        View.imprimir("____ Datos de la tarea ____");
+
+                        View.imprimir(tarea);
+
                         tareaController.buscar(id);
                     } else if (tarea == null) {
                         View.imprimir("No existe ninguna tarea");
                     }
                     break;
                 case 2://Modificar         0        1               2                                                   3                           4
-                    String dataTarea[] = {"Id", "Descripcion", "Recursos","\tFormato de fecha[ dia / mes / año ]\nnueva fecha de inicio", "nueva fecha Final"};
+                    String dataTarea[] = {"\tFormato de id[ t-numero ]\nId", "Descripcion", "Recursos", "\tFormato de fecha[ dia / mes / año ]\nnueva fecha de inicio", "nueva fecha Final"};
                     dataTarea = View.input("Datos de Tarea", dataTarea);
 
                     respuesta = tareaController.update(dataTarea);
@@ -217,18 +216,16 @@ public class Main {
 
                     break;
                 case 5://Desplejar tareas de un sprint
-                    String dataId[] ={"Ingrese el id del sprint","Ingrese el id de la tarea"};                     
-                    dataId = View.input("Ingrese los datos solicitados",dataId);                                        
-                    List tareaList= tareaController.tareaDelSprint(dataId);
-
+                    String idSprint = View.input("Ingrese el id del sprint");
+                    String[] tareaList = tareaController.tareaDelSprint(idSprint);
                     if (tareaList != null) {
-                        View.imprimir("========== Lista de Proyectos ===========");
-                        for (Object line : tareaList) {
-                            View.imprimir((String) line);
+                        View.imprimir("========== Lista de Tareas ===========");
+                        for (String line : tareaList) {
+                            View.imprimir( line);
                         }
-                        View.imprimir("=========================================");
+                        //View.imprimir("=========================================");
                     } else {
-                        View.imprimir("No existen Proyectos");
+                        View.imprimir("*** Tareas no asignadas al sprint ***");
                     }
                     break;
                 case 6://Salir
@@ -252,7 +249,7 @@ public class Main {
             opcUser = View.menu("Bienvenido al menu Sprint", menuOptions);
             switch (opcUser) {
                 case 0:// Agregar
-                    String data[] = {"Escriba el id proyecto a guardar","Fecha de inicio", "Fecha Final"};
+                    String data[] = {"Escriba el id proyecto a guardar", "Fecha de inicio", "Fecha Final"};
                     data = View.input("Datos del Sprint", data);//se despiega todas las entradas para que el usuario ingrese los datos
                     respuesta = SprintCtrll.create(data);
                     View.imprimir(respuesta);
@@ -270,13 +267,13 @@ public class Main {
                     String TaskList[] = SprintCtrll.desplegar_Sprint(id);
 
                     if (TaskList != null) {
-                        View.imprimir("========== Lista de Sprints ===========");
+                        // View.imprimir("========== Lista de Sprints ===========");
                         for (String line : TaskList) {
                             View.imprimir(line);
                         }
                         View.imprimir("=========================================");
                     } else {
-                        View.imprimir("No existen Sprints");
+                        View.imprimir("No contiene Sprints");
                     }
                     break;
                 case 3:// Salir

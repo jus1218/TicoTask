@@ -1,4 +1,4 @@
-package com.mycompany.controller;
+package com.mycompany.controller.sprint_controller;
 
 public interface SprintInterface {
         //CRUD C-CREATE R-READ U-UPDATE D-DELETE

@@ -1,7 +1,6 @@
 package com.mycompany.model.sprint_model;
 
 import com.mycompany.model.MotherProject;
-import com.mycompany.model.proyecto_model.ProyectoEntity;
 import com.mycompany.model.tarea_model.TareaEntity;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -11,7 +10,7 @@ public class SprintEntity extends MotherProject{
     
     private static int contadorSprint;
    /*se Agrega un proyecto especcifico*/
-    private ProyectoEntity Proyecto;
+    //private ProyectoEntity Proyecto;
     private List task;
 
 
@@ -38,10 +37,7 @@ public class SprintEntity extends MotherProject{
         return id;
     }
     
-    public void setProyectoEntity(ProyectoEntity proyecto){
-        
-        this.Proyecto = proyecto ;
-    }
+
     public List getList(){
         return task;
     }

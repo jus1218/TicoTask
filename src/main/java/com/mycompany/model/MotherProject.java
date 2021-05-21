@@ -7,7 +7,7 @@ import java.util.Date;
 public class MotherProject {
                 
     protected String id;
-    protected String nombre;
+
     protected Date fechaInicio;
     protected Date fechaFinal;
     
@@ -16,17 +16,13 @@ public class MotherProject {
         
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+
 
     public String getId() {
         return id;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
+
 
     public Date getFechaInicio() {
         return fechaInicio;
@@ -54,10 +50,9 @@ public class MotherProject {
     public String toString() {
         SimpleDateFormat formatoDelTexto = new SimpleDateFormat("dd/MM/yyyy");
         StringBuilder sb = new StringBuilder();
-        sb.append("Id = ").append(id);
-        sb.append("\t\t\t|| FechaInicio = ").append( formatoDelTexto.format(fechaInicio));
-        sb.append("\nNombre = ").append(nombre);
-        sb.append("\t|| FechaFinal = ").append(formatoDelTexto.format(fechaFinal));
+        sb.append("\nId = ").append(id);
+        sb.append("\t|| FechaInicio = ").append(String.valueOf(formatoDelTexto.format(fechaInicio)));
+        sb.append("\t|| FechaFinal = ").append(String.valueOf(formatoDelTexto.format(fechaFinal)));
         sb.append("\n-----------------------------------------------");
         return sb.toString();
     }
