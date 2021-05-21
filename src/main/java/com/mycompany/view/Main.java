@@ -10,6 +10,7 @@ import com.mycompany.controller.sprint_controller.SprintController;
 import com.mycompany.controller.tarea_controller.TareaController;
 import com.mycompany.controller.tarea_controller.TareaInterface;
 import com.mycompany.view.View;
+import java.util.List;
 
 /**
  * @author Alexandex Viales.
@@ -172,7 +173,7 @@ public class Main {
             opcU = View.menu("Menu Tareas", menuOptions);
             switch (opcU) {
                 case 0: //Agregar
-                    String data[] = {"Descripcion", "Recursos", "\tFormato fecha [ dia / mes / año ]\nFecha de inicio", "Fecha Final"};
+                    String data[] = {"Id Sprint a guardar","Descripcion", "Recursos", "\tFormato fecha [ dia / mes / año ]\nFecha de inicio", "Fecha Final"};
                     data = View.input("Datos de Tarea", data);
                     respuesta = tareaController.create(data);
                     View.imprimir(respuesta);
@@ -193,8 +194,8 @@ public class Main {
                         View.imprimir("No existe ninguna tarea");
                     }
                     break;
-                case 2://Modificar
-                    String dataTarea[] = {"Id", "Descripcion", "Recursos"};
+                case 2://Modificar         0        1               2                                                   3                           4
+                    String dataTarea[] = {"Id", "Descripcion", "Recursos","\tFormato de fecha[ dia / mes / año ]\nnueva fecha de inicio", "nueva fecha Final"};
                     dataTarea = View.input("Datos de Tarea", dataTarea);
 
                     respuesta = tareaController.update(dataTarea);
@@ -215,14 +216,15 @@ public class Main {
                     View.imprimir(respuesta);
 
                     break;
-                case 5://Desplejar
-
-                    String tareaList[] = tareaController.getAll();
+                case 5://Desplejar tareas de un sprint
+                    String dataId[] ={"Ingrese el id del sprint","Ingrese el id de la tarea"};                     
+                    dataId = View.input("Ingrese los datos solicitados",dataId);                                        
+                    List tareaList= tareaController.tareaDelSprint(dataId);
 
                     if (tareaList != null) {
                         View.imprimir("========== Lista de Proyectos ===========");
-                        for (String line : tareaList) {
-                            View.imprimir(line);
+                        for (Object line : tareaList) {
+                            View.imprimir((String) line);
                         }
                         View.imprimir("=========================================");
                     } else {
@@ -250,7 +252,7 @@ public class Main {
             opcUser = View.menu("Bienvenido al menu Sprint", menuOptions);
             switch (opcUser) {
                 case 0:// Agregar
-                    String data[] = {"Escriba el id proyecto a guardar", "Fecha de inicio", "Fecha Final"};
+                    String data[] = {"Escriba el id proyecto a guardar","Fecha de inicio", "Fecha Final"};
                     data = View.input("Datos del Sprint", data);//se despiega todas las entradas para que el usuario ingrese los datos
                     respuesta = SprintCtrll.create(data);
                     View.imprimir(respuesta);

@@ -29,7 +29,7 @@ public class TareaEntity extends MotherProject {
     }
 
     public TareaEntity(String[] datos) throws ParseException {
-        this.id = "T-" + ++TareaEntity.contadorTarea;
+        this.id = "-" + ++TareaEntity.contadorTarea;
         this.descripcion = datos[0];
         this.recurso = datos[1];
         this.setFechaInicio(datos[2]);
@@ -84,16 +84,16 @@ public class TareaEntity extends MotherProject {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        sb.append(super.toString());
 
         sb.append(", Descripcion = ").append(descripcion);
         //Toca llamar al toString de colaborador 
         sb.append(", Colaborador = ").append(colaborador);
 
         sb.append(", Recurso = ").append(recurso);
-        sb.append(super.toString());
-
         sb.append('}');
         return sb.toString();
+        
     }
 
 }

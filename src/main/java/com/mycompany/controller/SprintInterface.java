@@ -8,6 +8,8 @@ public interface SprintInterface {
     public String update(String[] data);
 
     public String[] desplegar_Sprint(String id);
+    
+    public String getTareas(String idSprint);
 
     
 }

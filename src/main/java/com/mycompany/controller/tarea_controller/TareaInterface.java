@@ -5,6 +5,8 @@
  */
 package com.mycompany.controller.tarea_controller;
 
+import java.util.List;
+
 public interface TareaInterface {
     public String create(String[] data);
 
@@ -16,5 +18,5 @@ public interface TareaInterface {
     
     public String addColaborador(String idTarea, String idColaborador);
     
-    public String[] getAll();
+    public List tareaDelSprint(String[] dataId);
 }

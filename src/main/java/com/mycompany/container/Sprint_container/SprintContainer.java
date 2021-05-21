@@ -33,20 +33,26 @@ public class SprintContainer {
         return null;
     }
 
-    public static List getAll() {
-        return null;
-    }
+    public static List getListTarea(String idSprint) {        
+       
+        if(contenedor.containsKey(idSprint)){}
+        return contenedor.get(idSprint).getList();       
+    }   
+    
+    
+    private static boolean isVoid() {
+       return contenedor.isEmpty();
+    }        
 
-    //--------- Desarrollar los metodos faltantes -----------------
     /*Update*/
-    public static boolean update(SprintEntity user) {
+   public static boolean update(SprintEntity user) {
         if (contenedor.containsKey(user.getId())) {
-
             //contenedor.replace(user.getId(), contenedor.get(user.getId()), user);
             contenedor.replace(user.getId(), user);
             return true;
         }
         return false;
-    }
-
+   }
 }
+
+//}

@@ -3,8 +3,10 @@ package com.mycompany.controller.sprint_controller;
 import com.mycompany.model.sprint_model.SprintEntity;
 import com.mycompany.container.Sprint_container.SprintContainer;
 import com.mycompany.container.proyecto_container.ProyectoContainer;
+import com.mycompany.container.tarea_container.TareaContainer;
 import com.mycompany.controller.SprintInterface;
 import com.mycompany.model.proyecto_model.ProyectoEntity;
+import com.mycompany.model.tarea_model.TareaEntity;
 import com.mycompany.verificacion.Verificar;
 import java.text.ParseException;
 import java.util.List;
@@ -18,8 +20,8 @@ public class SprintController implements SprintInterface {
         String respuesta = "*** Proyecto no existente ***";
         if (ProyectoContainer.exist(data[0])) {
             try {
-                ProyectoEntity p0 = ProyectoContainer.find(data[0]);//esto es para poder hacer las comparaciones de fechas
-
+                ProyectoEntity p0 = ProyectoContainer.find(data[0]);//esto es para poder hacer las comparaciones de fechas                
+                
                 if (Verificar.verificarRangoFecha(data, p0.getFechaInicio(), p0.getFechaFinal())) {
                     SprintEntity s0 = new SprintEntity(data);
                     if (SprintContainer.add(s0)) {
@@ -85,6 +87,22 @@ public class SprintController implements SprintInterface {
             return data;
 
         }
+        return null;
+    }
+
+    @Override
+    public String getTareas(String idSprint) {
+        if(SprintContainer.exist(idSprint)){
+            
+            SprintEntity s0 =  SprintContainer.find(idSprint);
+            
+            
+            //ArrayList
+        
+        }
+        
+        
+        
         return null;
     }
 
