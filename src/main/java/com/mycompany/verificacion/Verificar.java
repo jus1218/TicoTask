@@ -23,8 +23,17 @@ public class Verificar {
         if (verificarCongruenciaFechas(data[1], data[2])) {
             Date fechaIni = new SimpleDateFormat("dd/MM/yyyy").parse(data[1]);
             Date fechaFina = new SimpleDateFormat("dd/MM/yyyy").parse(data[2]);
-            
-            if (fechaIni.after(inicioProj) && fechaFina.before(finalProj)) return true; 
+
+            if (fechaIni.after(inicioProj) && fechaFina.before(finalProj)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean verificarEstado(String pEstado) {
+        if (pEstado.equals("Activo") || pEstado.equals("Inactivo") || pEstado.equals("activo") || pEstado.equals("inactivo")) {
+            return true;
         }
         return false;
     }

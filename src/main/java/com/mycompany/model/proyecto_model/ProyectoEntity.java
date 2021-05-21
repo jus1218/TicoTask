@@ -9,7 +9,7 @@ import java.util.List;
 public class ProyectoEntity extends MotherProject {
 
     protected static int contadorId; //asignar el valor numerico al id
-    private List  sprints;
+    private List sprints;
 
     public ProyectoEntity(String data[]) throws ParseException {//constructor para crear poyectos
         //data[0] => viene el id pero eso ya esta

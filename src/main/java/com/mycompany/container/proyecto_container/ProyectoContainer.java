@@ -23,7 +23,7 @@ public class ProyectoContainer {
         return contenedor.containsKey(id);
     }
 
-    public static List getAll() {// verificar metodo
+    public static List getAll() {// Mostrar todos los proyectos
         // List<ProyectoEntity> list = new ArrayList<ProyectoEntity>(contenedor.values());
 
         return new ArrayList<ProyectoEntity>(contenedor.values());//aqui es el problem
